@@ -130,6 +130,6 @@ def JoinAllFiles(PathToFiles, OutputFilename, SaveToCsv = True, Verbose=False):
     return(df)
     
 if __name__ == "__main__":
-    PathToFiles = r'C:\SaturdaysAI\SaturdayAI_Mex\Project\Datasets Cecytej\Plantel Guadalajara'
-    OutputFilename = r'C:\SaturdaysAI\SaturdayAI_Mex\Project\Datasets Cecytej\Plantel Guadalajara\test.csv'
-    JoinAllFiles(PathToFiles, OutputFilename)
+    PathToFiles = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets'
+    OutputFilename = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets\FinalDataFrame.csv'
+    JoinAllFiles(PathToFiles, OutputFilename, Verbose=True)
