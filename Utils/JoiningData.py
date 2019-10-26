@@ -54,7 +54,7 @@ def CleaningRawDataFrame(df):
     df.dropna(axis = 1, how = 'all', inplace = True)
     df.columns = df.iloc[0]
     df.drop(df.index[0], inplace = True)
-    df.drop(['Nombre', 'No. Cons', 'PROMEDIO', 'MATERIAS REP', '% REPROBACIÓN', '% APROBACIÓN'], axis=1, inplace=True)
+    df.drop(['No. Cons', 'PROMEDIO', 'MATERIAS REP', '% REPROBACIÓN', '% APROBACIÓN'], axis=1, inplace=True)
     
     df, Subject = _CorrectingColumnNames(df)
     
@@ -64,6 +64,14 @@ def CleaningRawDataFrame(df):
             count = i
             break
     df2 = df.iloc[0:count]
+    if 'TUT' in Subject:
+        df2.drop(['TUT', 'Faltas_TUT'], axis=1, inplace=True)
+        Subject.remove('TUT')
+    for s in Subject:
+        if 'TAL' in s:
+            df2[s] = df[s].apply(lambda x: 0 if x=='NP' else 7 if x == 'AC' else 5)
+    df2['Repetidor'] = df2['Nombre'].apply(lambda x: 'Si' if '(R)' in x else 'No')
+    df2.drop(['Nombre'], axis=1, inplace=True)
     return df2, Subject
 
 def ReformatingDataFrame(df, Subject):
