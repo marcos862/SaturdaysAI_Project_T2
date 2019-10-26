@@ -11,6 +11,7 @@ The dataset consists of school data from the College of Scientific and Technolog
 - February 2018 - July 2018
 - August 2018- January 2019
 - February 2019 - July 2019
+
 The personal data was deleted from the dataset and a new identification code was created for the students, the school data correspond to grading and attendance information of the students of all semesters of 4 different professional careers.
 ## License
 This project is licensed under the MIT License.
