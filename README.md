@@ -6,7 +6,12 @@ This project requires Python and the following Python libraries installed:
 - NumPy
 - Pandas
 ## Data
-The dataset consists of school data from the College of Scientific and Technological Studies of the state of Jalisco campus Guadalajara downloaded from the school control platform of the periods August 2017- January 2018, February 2018 - July 2018, August 2018- January 2019 and February 2019 - July 2019. The personal data was deleted from the dataset and a new identification code was created for the students, the school data correspond to grading and attendance information of the students of all semesters of 4 different professional careers.
+The dataset consists of school data from the College of Scientific and Technological Studies of the state of Jalisco campus Guadalajara downloaded from the school control platform of the periods:
+- August 2017- January 2018
+- February 2018 - July 2018
+- August 2018- January 2019
+- February 2019 - July 2019
+The personal data was deleted from the dataset and a new identification code was created for the students, the school data correspond to grading and attendance information of the students of all semesters of 4 different professional careers.
 ## License
 This project is licensed under the MIT License.
 ## Team
