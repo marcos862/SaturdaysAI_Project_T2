@@ -23,25 +23,25 @@ def _CorrectingColumnNames(df): # by convention, the _ means this is a private f
         We will be doing this addind a consecutive number
         when the names are duplicated.
     """
-    NumColumns = len(df.columns)
-    ColumnsNameCorrected = []
-    Subject = []
-    for i in range(NumColumns):
-        if df.columns[i] == 'Faltas':
-            SubjectName = df.columns[i-1]
-            if SubjectName in Subject:
-                counter = 0
-                while (str(SubjectName) + str(counter)) in Subject:
-                       counter += 1
-                SubjectName = str(SubjectName) + str(counter)
-            Subject.append(SubjectName)
-            ColumnsNameCorrected.pop() # The previous added was the Name of theSubject, discarding it
-            ColumnsNameCorrected.append(SubjectName) # Adding the corrected name
-            ColumnsNameCorrected.append('Faltas_' + str(SubjectName))
-        else:
-            ColumnsNameCorrected.append(str(df.columns[i]))
-    df.columns = ColumnsNameCorrected
-    return(df, Subject)
+    ColumnsNameCorrected = []                                       # Starting an empty list for the columns with the names corrected
+    Subject = []                                                    # Starting an empty list for the subjects/topics that are being found
+    NumColumns = len(df.columns)                                    # Getting the number of columns to use it in the for
+    for i in range(NumColumns):                                     # for each column
+        if df.columns[i] == 'Faltas':                               # if the column is called "Faltas"
+            SubjectName = df.columns[i-1]                           # The previous column is the name of the subject
+            if SubjectName in Subject:                              # If this Subject Name is duplicated...
+                counter = 0                                         # We initialize a counter to 0, to replace the name of the column adding a number
+                while (str(SubjectName) + str(counter)) in Subject: # While the SubjectName + Counter is in the Subject List...
+                       counter += 1                                 # we will be increasing the counter
+                SubjectName = str(SubjectName) + str(counter)       # So, the new name will be the SubjectName + the value of the counter    
+            Subject.append(SubjectName)                             # And, we add the name of the subject to the Subject List
+            ColumnsNameCorrected.pop()                              # The previous added was the Name of theSubject, discarding it
+            ColumnsNameCorrected.append(SubjectName)                # Adding the corrected name to the list with the right columns names
+            ColumnsNameCorrected.append('Faltas_' + str(SubjectName))# Adding also, the new name to the column "Faltas", we are adding the subject name
+        else:                                                       # If the column name is not "Faltas"
+            ColumnsNameCorrected.append(str(df.columns[i]))         # We added to the list with the right Columns Name
+    df.columns = ColumnsNameCorrected                               # Replacing the columns name of the dataframe with the ColumnsNameCorrected list
+    return(df, Subject)                                             # Returning the dataframe with columns name modified and the List of subjects found in the dataframe
 
 def CleaningRawDataFrame(df):
     """
@@ -55,7 +55,7 @@ def CleaningRawDataFrame(df):
     df.columns = df.iloc[0]                                                     # Taking the first row as the name of the columns
     df.drop(df.index[0], inplace = True)                                        # Removing the first row that we just convert to the columns names
     columnsToRemove = ['No. Cons', 'PROMEDIO', 'MATERIAS REP', '% REPROBACIÓN', '% APROBACIÓN']
-    df.drop(columnsToRemove, axis=1, inplace=True)                              # Removing columns that are not useful
+    df.drop(columnsToRemove, axis=1, inplace=True)                              # Removing columns that are not useful (the axis=1 indicate columns, default is rows [axis = 0])
 
     df, Subject = _CorrectingColumnNames(df)                                    # Renaming the columns that have the same name
 
@@ -95,18 +95,19 @@ def ReformatingDataFrame(df, Subject):
         be able to join, easily, all the database that are splitted
         by period, group and partial.
     """
-    Missings = ["Faltas_" + str(c) for c in Subject]
-    ColsToStack = Subject + Missings
-    id_vars = set(df.columns) - set(ColsToStack)
-    df_stack = pd.melt(df, id_vars=id_vars, value_vars=ColsToStack)
-    df_stack['Tipo'] = df_stack['variable'].apply(lambda x: 'Faltas' if 'Faltas_' in x else 'Calificacion')
-    df_stack['Materia'] = df_stack['variable'].apply(lambda x: x.replace("Faltas_", ""))
-    df_stack.drop('variable', axis = 1, inplace=True)
-    groupCols = list(set(df_stack.columns) - set(['Tipo', 'value']))
-    df_unstack = pd.pivot_table(df_stack, index=groupCols, columns=['Tipo'], values=['value'], aggfunc=lambda x: ' '.join(str(v) for v in x)) #https://medium.com/@enricobergamini/creating-non-numeric-pivot-tables-with-python-pandas-7aa9dfd788a7
-    df_unstack.reset_index(inplace = True, col_level=1)
-    df_unstack.columns = df_unstack.columns.droplevel()
-    return(df_unstack)
+    Missings = ["Faltas_" + str(c) for c in Subject]                    # Creating a list with the name of columns that include "Faltas_"
+    ColsToStack = Subject + Missings                                    # The columns that will be "stacked" are the Subject and the "Missings"
+    id_vars = set(df.columns) - set(ColsToStack)                        # The rest of columns will be used as indexes
+    df_stack = pd.melt(df, id_vars=id_vars, value_vars=ColsToStack)     # To stack the table, we use the function "melt"
+    df_stack['Tipo'] = df_stack['variable'].apply(lambda x: 'Faltas' if 'Faltas_' in x else 'Calificacion') # Adding a column that will tell us if the row data is a Grade or Missings
+    df_stack['Materia'] = df_stack['variable'].apply(lambda x: x.replace("Faltas_", "")) # Adding another column with the name of the subject, for that, we use the "Faltas_"
+    df_stack.drop('variable', axis = 1, inplace=True)                   # Removing the column 'variable' because is not needed anymore
+    groupCols = list(set(df_stack.columns) - set(['Tipo', 'value']))    # Getting a list of columns that will be used to group the data    
+    #https://medium.com/@enricobergamini/creating-non-numeric-pivot-tables-with-python-pandas-7aa9dfd788a7
+    df_unstack = pd.pivot_table(df_stack, index=groupCols, columns=['Tipo'], values=['value'], aggfunc=lambda x: ' '.join(str(v) for v in x)) # Doing a Pivot table (unstacking) the data. Converting Rows in columns
+    df_unstack.reset_index(inplace = True, col_level=1)                 # Converting the 'multindex' (rows) in columns
+    df_unstack.columns = df_unstack.columns.droplevel()                 # Removing one level of the columns multindex
+    return(df_unstack)                                                  # Returning the dataframe modified
     
 def JoinAllFiles(PathToFiles, OutputFilename, SaveToCsv = True, Verbose=False):
     """
