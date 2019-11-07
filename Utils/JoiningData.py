@@ -99,6 +99,7 @@ def ReformatingDataFrame(df, Subject):
     ColsToStack = Subject + Missings                                    # The columns that will be "stacked" are the Subject and the "Missings"
     id_vars = set(df.columns) - set(ColsToStack)                        # The rest of columns will be used as indexes
     df_stack = pd.melt(df, id_vars=id_vars, value_vars=ColsToStack)     # To stack the table, we use the function "melt"
+    # https://towardsdatascience.com/apply-and-lambda-usage-in-pandas-b13a1ea037f7
     df_stack['Tipo'] = df_stack['variable'].apply(lambda x: 'Faltas' if 'Faltas_' in x else 'Calificacion') # Adding a column that will tell us if the row data is a Grade or Missings
     df_stack['Materia'] = df_stack['variable'].apply(lambda x: x.replace("Faltas_", "")) # Adding another column with the name of the subject, for that, we use the "Faltas_"
     df_stack.drop('variable', axis = 1, inplace=True)                   # Removing the column 'variable' because is not needed anymore
@@ -152,6 +153,7 @@ def JoinAllFiles(PathToFiles, OutputFilename, SaveToCsv = True, Verbose=False):
                 df_temp['Group'] = Group.split(".")[0][1]                       # and the second char in Group[0] is the group ('A')
                 df = pd.concat([df, df_temp], ignore_index = True)              # Then, we concatenate the current dataframe with the previous one
     if SaveToCsv:                                                               # if SaveToCsv is True
+        if Verbose: print("Saving the dataframe in: {}".format(OutputFilename))
         df.to_csv(OutputFilename)                                               # We save the dataframe in the OutputFileName file
     return(df)                                                                  # Finally, we return the dataframe generated
     

@@ -58,6 +58,7 @@ def GettingNamesAndCodes(PathToFiles, OutputFilename, SaveToCsv = True, Verbose=
                 df = pd.concat([df, df2], ignore_index = True)
     df.drop_duplicates(inplace = True)
     if SaveToCsv:                                                               # if SaveToCsv is True
+        if Verbose: print("Saving the dataframe in: {}".format(OutputFilename))
         df.to_csv(OutputFilename)                                               # We save the dataframe in the OutputFileName file
     return(df)   
     
