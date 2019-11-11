@@ -51,10 +51,9 @@ def CleaningRawDataFrame(df):
         Also, it's calling a function to remove the issue with the
         columns names duplications.
     """
-    df.dropna(axis = 1, how = 'all', inplace = True)                            # First, we remove the columns that are all 'NaN'
     df.columns = df.iloc[0]                                                     # Taking the first row as the name of the columns
     df.drop(df.index[0], inplace = True)                                        # Removing the first row that we just convert to the columns names
-    columnsToRemove = ['No. Cons', 'PROMEDIO', 'MATERIAS REP', '% REPROBACIÓN', '% APROBACIÓN']
+    columnsToRemove = ['No. Cons', 'PROMEDIO', 'MATERIAS REP', '% REPROBACIÓN', '% APROBACIÓN', '']
     df.drop(columnsToRemove, axis=1, inplace=True)                              # Removing columns that are not useful (the axis=1 indicate columns, default is rows [axis = 0])
 
     df, Subject = _CorrectingColumnNames(df)                                    # Renaming the columns that have the same name
@@ -65,7 +64,7 @@ def CleaningRawDataFrame(df):
     # and the real name of the subjects
     RowNumber = 0                                                               # Starting a counter for the row number
     for i in range(df.shape[0]):                                                # For each row in the dataframe
-        if np.isnan(float(df.iloc[i][0])):                                      # Checking if the No Control column in the current row is a 'NaN'
+        if df.iloc[i][0] == '':                                                 # Checking if the No Control column in the current row is a 'NaN'
             RowNumber = i                                                       # If that is the case, we reached the end of the data we care
             break                                                               # we break the for.
     # https://www.dataquest.io/blog/settingwithcopywarning/
@@ -74,15 +73,16 @@ def CleaningRawDataFrame(df):
         df2.drop(['TUT', 'Faltas_TUT'], axis=1, inplace=True)                   # Removing the 'TUT' and 'Faltas_TUT' as this columns doesnt have useful information
         Subject.remove('TUT')                                                   # Also, removing the 'TUT' from the list of subjects
     
-    # The workshop subjects ('TAL') doesnt have a numeric grade, so, we need to
+    # There are some subjects that doesnt have a numeric grade, so, we need to
     # change the non numeric grade to numeric grade, we are doing that as follows:
     #   'NP' = 0    # NP means 'No presento' (Exam not taken)
     #   'AC' = 7    # AC means 'Acreditado'  (Exam was passed)
     #   'NA' = 5    # NA means 'No Acreditado' (Exam was not passed)
     for s in Subject:                                                           # Checking all the Subjects in the list
-        if 'TAL' in s:                                                          # if the subject is a workshop ('TAL')
-            df2[s] = df[s].apply(lambda x: 0 if x=='NP' else 7 if x == 'AC' else 5) # Changing all the non-numeric grades to numeric grades
-    
+        df2[s] = df2[s].apply(lambda x: 0 if (x=='NP' or x=='') else 7 if x == 'AC' else 5 if x == 'NA' else x) # Changing all the non-numeric grades to numeric grades
+        df2['Faltas_' + s] = df2['Faltas_' + s].apply(lambda x: 0 if x=='' else x) # Changing all the '' missings to zero
+        df2[s] = df2[s].astype(int)
+        df2['Faltas_' + s] = df2['Faltas_' + s].astype(int)
     # Finally, we know that, if an alumni has the string '(R)' in his/her name
     # that means that she/he is coursing again a class or the semester
     df2['Repetidor'] = df2['Nombre'].apply(lambda x: 'Si' if '(R)' in x else 'No')  # Creating a new column to show if the alumni is coursing again the class/semester
@@ -141,7 +141,7 @@ def JoinAllFiles(PathToFiles, OutputFilename, SaveToCsv = True, Verbose=False):
                     continue
                 if Verbose: print("        Group = {}".format(Group))           # Print the name of the current Group File
                 file = os.path.join(PathToFiles, Cycle, Partial, Group)         # Getting the fullpath and filename to the file
-                df_temp = pd.read_html(file)                                    # Reading the files as HTML, it will produce a list of dataframes
+                df_temp = pd.read_html(file, keep_default_na=False)             # Reading the files as HTML, it will produce a list of dataframes
                 df_temp = df_temp[1]                                            # In our case, the Dataframe that is important is the [1]
                 df_temp, Subject = CleaningRawDataFrame(df_temp)                # Cleaning the RawDataFrame removing columns not important and removing duplicate name columns
                 df_temp = ReformatingDataFrame(df_temp, Subject)                # Modifying the way the dataframe is presented. Changing Subject Grades and Missings columns to rows
