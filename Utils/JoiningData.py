@@ -8,7 +8,6 @@ This script will be used to join all the data from the datasets.
 """
 import os
 import pandas as pd
-import numpy as np
 
 def _CorrectingColumnNames(df): # by convention, the _ means this is a private function
     """
