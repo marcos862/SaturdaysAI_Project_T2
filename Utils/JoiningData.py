@@ -78,8 +78,8 @@ def CleaningRawDataFrame(df):
     #   'AC' = 7    # AC means 'Acreditado'  (Exam was passed)
     #   'NA' = 5    # NA means 'No Acreditado' (Exam was not passed)
     for s in Subject:                                                           # Checking all the Subjects in the list
-        df2[s] = df2[s].apply(lambda x: 0 if (x=='NP' or x=='') else 7 if x == 'AC' else 5 if x == 'NA' else x) # Changing all the non-numeric grades to numeric grades
-        df2['Faltas_' + s] = df2['Faltas_' + s].apply(lambda x: 0 if x=='' else x) # Changing all the '' missings to zero
+        df2[s] = df2[s].apply(lambda x: 0 if x=='NP' else 7 if x == 'AC' else 5 if x == 'NA' else -1 if x == '' else x) # Changing all the non-numeric grades to numeric grades
+        df2['Faltas_' + s] = df2['Faltas_' + s].apply(lambda x: -1 if x=='' else x) # Changing all the '' missings to zero
         df2[s] = df2[s].astype(int)
         df2['Faltas_' + s] = df2['Faltas_' + s].astype(int)
     # Finally, we know that, if an alumni has the string '(R)' in his/her name
@@ -159,5 +159,5 @@ def JoinAllFiles(PathToFiles, OutputFilename, SaveToCsv = True, Verbose=False):
 if __name__ == "__main__":                                                      # This main is just to setup some variables before running the script if we 
                                                                                 # run it with "double click" or with python <script name>.py from cmd
     PathToFiles = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets'
-    OutputFilename = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets\FinalDataFrame.csv'
+    OutputFilename = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets\FullDataSet.csv'
     JoinAllFiles(PathToFiles, OutputFilename, Verbose=True)
