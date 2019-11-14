@@ -11,7 +11,7 @@ def MergingTheDataSets(path2MainDF, path2GenderDF, path2LabeledDF, OutputFilenam
     df_main.drop(['Unnamed: 0'], axis=1, inplace=True)
     df_labels.drop(['Unnamed: 0'], axis=1, inplace=True)
     
-    columnsToDrop = set(df_labels.columns) - set(['No. Control', 'Abandono'])
+    columnsToDrop = set(df_labels.columns) - set(['No. Control', 'Abandono', 'Ultimo Semestre'])
     df_labels.drop(columnsToDrop, axis = 1, inplace=True)
     df_main_l = df_main.merge(df_labels, how='left', on=['No. Control'])
 
@@ -43,8 +43,8 @@ def MergingTheDataSets(path2MainDF, path2GenderDF, path2LabeledDF, OutputFilenam
 
 if __name__ == "__main__":                                                      # This main is just to setup some variables before running the script if we 
                                                                                 # run it with "double click" or with python <script name>.py from cmd
-    path2MainDF = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets\FinalDataFrame.csv'
+    path2MainDF = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets\FullDataSet.csv'
     path2GenderDF = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets\Gender.csv'
     path2LabeledDF = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets\StudentsLabeledByCycle.csv'
-    OutputFilename = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets\FinalDataFrame_with_labels_and_genders.csv'
+    OutputFilename = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets\FullDataSet_with_labels_and_genders.csv'
     MergingTheDataSets(path2MainDF, path2GenderDF, path2LabeledDF, OutputFilename, Verbose=True)
