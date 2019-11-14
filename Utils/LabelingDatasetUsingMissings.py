@@ -36,6 +36,6 @@ def LabelingDatasetUsingMissings(path2csv, MissingsLimit, OutputFilename, SaveTo
 
 if __name__ == "__main__":                                                      # This main is just to setup some variables before running the script if we 
                                                                                 # run it with "double click" or with python <script name>.py from cmd
-    path2csv = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets\FinalDataFrame.csv'
+    path2csv = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets\FullDataSet.csv'
     OutputFilename = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets\StudentsLabeledByMissings.csv'
     LabelingDatasetUsingMissings(path2csv, 70, OutputFilename, Verbose=True)
