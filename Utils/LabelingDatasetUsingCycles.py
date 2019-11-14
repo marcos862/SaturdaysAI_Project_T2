@@ -9,22 +9,29 @@ def LabelingDatasetUsingCycles(path2csv, OutputFilename, SaveToCsv = True, Verbo
     df_pivot.reset_index(col_level=1, inplace= True)
     df_pivot.columns = df_pivot.columns.droplevel()
     df_pivot['Abandono'] = ''
+    df_pivot['Ultimo Semestre'] = ''
     NoRows = df_pivot.shape[0]
     NoColumns = df_pivot.shape[1]
     if Verbose: print("No Rows: " + str(NoRows) + ", No Columns: " + str(NoColumns))
     
     for i in range(NoRows):
         Abandono = 'Si'
-        if(not np.isnan(df_pivot.iloc[i][-2])):
+        if(not np.isnan(df_pivot.iloc[i][-3])):
             #print("Row = " + str(i) + ", Column = 5")
             Abandono = 'No'
+            LastSemester = df_pivot.iloc[i][-3]
         else:
-            for j in range(NoColumns-2,0,-1): # Removing 'No. Control' and 'Abandono' columns and checking from last to first cycle
+            for j in range(NoColumns-3, 0, -1): # Removing 'No. Control' and 'Abandono' columns and checking from last to first cycle
                 #print("Row = " + str(i) + ", Column = " + str(j))
-                if(not np.isnan(df_pivot.iloc[i][j]) and df_pivot.iloc[i][j] == 6):
-                    Abandono = 'No'
+                if not np.isnan(df_pivot.iloc[i][j]):
+                    LastSemester = df_pivot.iloc[i][j]
+                    if df_pivot.iloc[i][j] == 6:
+                        Abandono = 'No'
+                    break
         #print("   Abandono? " + Abandono)
-        df_pivot.iloc[i, -1] = Abandono # This is the 'Abandono' Column
+        df_pivot.iloc[i, -2] = Abandono # This is the 'Abandono' Column
+        df_pivot.iloc[i, -1] = LastSemester # This is the 'Abandono' Column
+        
 
     if Verbose:
         NoDropped = df_pivot[df_pivot['Abandono']=='No'].shape[0]
@@ -39,6 +46,6 @@ def LabelingDatasetUsingCycles(path2csv, OutputFilename, SaveToCsv = True, Verbo
 
 if __name__ == "__main__":                                                      # This main is just to setup some variables before running the script if we 
                                                                                 # run it with "double click" or with python <script name>.py from cmd
-    path2csv = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets\FinalDataFrame.csv'
+    path2csv = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets\FullDataSet.csv'
     OutputFilename = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets\StudentsLabeledByCycle.csv'
     LabelingDatasetUsingCycles(path2csv, OutputFilename, Verbose=True)
