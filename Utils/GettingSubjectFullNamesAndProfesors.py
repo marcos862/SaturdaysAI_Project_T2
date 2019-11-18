@@ -73,7 +73,7 @@ def GettingProfesorsNames(PathToFiles, OutputFilename, SaveToCsv = True, Verbose
             df = pd.concat([df, df_temp], ignore_index = True)              # Then, we concatenate the current dataframe with the previous one
     if SaveToCsv:                                                               # if SaveToCsv is True
         if Verbose: print("Saving the dataframe in: {}".format(OutputFilename))
-        df.to_csv(OutputFilename)                                               # We save the dataframe in the OutputFileName file
+        df.to_csv(OutputFilename, encoding='utf-8-sig')                                               # We save the dataframe in the OutputFileName file
     return(df)
                 
 if __name__ == "__main__":                                                      # This main is just to setup some variables before running the script if we 

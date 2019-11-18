@@ -116,7 +116,7 @@ def Anonymizer(PathToFiles, PathToUniqueIds, Verbose=False):
                 df_student_uuid.index = df_student_uuid['Id Unico']
                 df_student_uuid.drop(['No. Control', 'Nombre', 'Id Unico'], inplace = True, axis = 1)
                 OutputFile = os.path.join(PathToFiles + "_Anonymous", Cycle, Partial, Group.split(".")[0] + ".csv")
-                df_student_uuid.to_csv(OutputFile)
+                df_student_uuid.to_csv(OutputFile, encoding='utf-8-sig')
 
 
 

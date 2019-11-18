@@ -32,7 +32,7 @@ def LabelingDatasetUsingMissings(path2csv, MissingsLimit, OutputFilename, SaveTo
     
     if SaveToCsv:                                                               # if SaveToCsv is True
         if Verbose: print("Saving the dataframe in: {}".format(OutputFilename))
-        df_pivot.to_csv(OutputFilename)
+        df_pivot.to_csv(OutputFilename, encoding='utf-8-sig')
 
 if __name__ == "__main__":                                                      # This main is just to setup some variables before running the script if we 
                                                                                 # run it with "double click" or with python <script name>.py from cmd
