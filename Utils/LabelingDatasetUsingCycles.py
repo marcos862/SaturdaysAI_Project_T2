@@ -4,8 +4,8 @@ import numpy as np
 def LabelingDatasetUsingCycles(path2csv, OutputFilename, SaveToCsv = True, Verbose=False):
     df = pd.read_csv(path2csv)
     df.drop(['Unnamed: 0'], axis=1, inplace=True)
-    df.drop(['Materia', 'Repetidor', 'Calificacion', 'Faltas', 'Partial'], axis=1, inplace = True)
-    df_pivot = pd.pivot_table(df, index=['No. Control'], columns=['Cycle'], values=['Semester'], aggfunc=np.max).copy()
+    df.drop(['Materia', 'Repetidor', 'Calificacion', 'Faltas', 'Partial', 'Genero', 'Turno', 'Especialidad', 'Group'], axis=1, inplace = True)
+    df_pivot = pd.pivot_table(df, index=['Id Unico'], columns=['Cycle'], values=['Semester'], aggfunc=np.max).copy()
     df_pivot.reset_index(col_level=1, inplace= True)
     df_pivot.columns = df_pivot.columns.droplevel()
     df_pivot['Abandono'] = ''
@@ -46,6 +46,6 @@ def LabelingDatasetUsingCycles(path2csv, OutputFilename, SaveToCsv = True, Verbo
 
 if __name__ == "__main__":                                                      # This main is just to setup some variables before running the script if we 
                                                                                 # run it with "double click" or with python <script name>.py from cmd
-    path2csv = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets\FullDataSet.csv'
-    OutputFilename = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets\StudentsLabeledByCycle.csv'
+    path2csv = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\DataSets_Created\FullDataSet.csv'
+    OutputFilename = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\DataSets_Created\StudentsLabeledByCycle.csv'
     LabelingDatasetUsingCycles(path2csv, OutputFilename, Verbose=True)
