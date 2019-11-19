@@ -124,5 +124,5 @@ def Anonymizer(PathToFiles, PathToUniqueIds, Verbose=False):
 if __name__ == "__main__":                                                      # This main is just to setup some variables before running the script if we 
                                                                                 # run it with "double click" or with python <script name>.py from cmd
     PathToFiles = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets'
-    PathToUniqueIds = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\Raw_Datasets\UniqueIdentifiers.csv'
+    PathToUniqueIds = r'C:\SaturdaysAI\SaturdaysAI_Project_T2\DataSets_Created\UniqueIdentifiers.csv'
     Anonymizer(PathToFiles, PathToUniqueIds, Verbose=True)
