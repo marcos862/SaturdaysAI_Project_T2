@@ -61,30 +61,19 @@ def TrainingModel(DataSet, OutputPathModel, Verbose=True):
     
     
     num_trees = 50
-    rbc = _RandomForestClassifier(n_estimators = num_trees, 
+    rfc = _RandomForestClassifier(n_estimators = num_trees, 
                              #class_weight="balanced", 
                              random_state = seed, 
                              max_features = 4)
-    rbc.fit(X_train, y_train)
-    
-    bbc = BalancedBaggingClassifier(base_estimator=DecisionTreeClassifier(),
-                                n_estimators=num_trees,
-                                #sampling_strategy='auto',
-                                #replacement=False,
-                                random_state=seed)
-
-    #Train the classifier.
-    bbc.fit(X_train, y_train)
-    bbc_pred_y = bbc.predict(X_test)
-    _mostrar_resultados(y_test, bbc_pred_y)
+    rfc.fit(X_train, y_train)
     
     if Verbose:
-        pred_y = rbc.predict(X_test)
+        pred_y = rfc.predict(X_test)
         print()
         _mostrar_resultados(y_test, pred_y)
         print("Saving the model in the following path: {}".format(OutputPathModel))
     
-    _pickle.dump(bbc, open(OutputPathModel, 'wb'))
+    _pickle.dump(rfc, open(OutputPathModel, 'wb'))
     
     if Verbose:
         _plt.show()
