@@ -5,6 +5,14 @@ The objective of this project is to develop a system that generates intervention
 This project requires Python and the following Python libraries installed:
 - NumPy
 - Pandas
+- seaborn
+- matplotlib
+- scikit-learn
+- imbalanced-learn
+
+All this packages can be installed easily if you run the following command after cloning the repo:
+pip install -e .
+
 ## Data
 The dataset consists of school data from the College of Scientific and Technological Studies of the state of Jalisco campus Guadalajara downloaded from the school control platform of the periods:
 - August 2017- January 2018
