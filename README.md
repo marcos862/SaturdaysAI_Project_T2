@@ -17,7 +17,6 @@ The personal data was deleted from the dataset and a new identification code was
 This project is licensed under the MIT License.
 ## Team
 - Angel Cruz Lopez
-- Brenda Magali Cardenas Ramirez
 - Griselda Perez Velazquez
 - Marcos Ignacio Bolaños Valerio
 - Xochitl Marina Arroyo Alcalá
