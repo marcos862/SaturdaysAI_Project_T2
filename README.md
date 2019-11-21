@@ -11,7 +11,8 @@ This project requires Python and the following Python libraries installed:
 - imbalanced-learn
 
 All this packages can be installed easily if you run the following command after cloning the repo:
-pip install -e .
+
+<pre>pip install -e .</pre>
 
 ## Data
 The dataset consists of school data from the College of Scientific and Technological Studies of the state of Jalisco campus Guadalajara downloaded from the school control platform of the periods:
