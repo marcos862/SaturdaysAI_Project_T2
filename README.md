@@ -27,7 +27,7 @@ The dataset consists of school data from the College of Scientific and Technolog
 
 The personal data was deleted from the dataset and a new identification code was created for the students, the school data correspond to grading and attendance information of the students of all semesters of 4 different professional careers.
 ## License
-This project is licensed under the MIT License.
+This project is licensed under GNU GENERAL PUBLIC LICENSE
 ## Team
 - Angel Cruz Lopez
 - Griselda Perez Velazquez
