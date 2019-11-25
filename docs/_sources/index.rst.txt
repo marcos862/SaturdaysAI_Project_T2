@@ -3,12 +3,26 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Scholar Dropout Detection's documentation!
+Scholar Dropout Detection's documentation!
 =====================================================
 
+.. figure:: _static/logo.png
+   :align: center
+   :height: 128px
+   :width: 128px
+
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+    :maxdepth: 3
+    :numbered:
+
+    Utils/index
+    Model/index
+
+.. toctree::
+    :maxdepth: 2
+
+    release_notes
+
 
 
 

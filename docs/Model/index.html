@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>2. Functions used for the ML Model &#8212; Scholar Dropout Detection 0.5.1 documentation</title>
+    <link rel="stylesheet" href="../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Release Notes" href="../release_notes.html" />
+    <link rel="prev" title="1. Functions used to Transformed/Clean the Raw Data" href="../Utils/index.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="../index.html">
+          <span>Scholar Dropout Detection 0.5.1 documentation</span></a></h1>
+        <h2 class="heading"><span>2. Functions used for the ML Model</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="../Utils/index.html">1. Functions used to Transformed/Clean the Raw Data</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../release_notes.html">Release Notes</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <div class="section" id="functions-used-for-the-ml-model">
+<span id="model"></span><h1>2. Functions used for the ML Model<a class="headerlink" href="#functions-used-for-the-ml-model" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="how-to-use">
+<span id="howtouse-model"></span><h2>2.1. How To Use<a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
+<p>** Under Construction **</p>
+</div>
+<div class="section" id="module-Model.PreProcessingData">
+<span id="modules-inside-the-model-package"></span><span id="modules-model"></span><h2>2.2. Modules inside the Model package<a class="headerlink" href="#module-Model.PreProcessingData" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="Model.PreProcessingData.PreProcessingData">
+<code class="sig-prename descclassname">Model.PreProcessingData.</code><code class="sig-name descname">PreProcessingData</code><span class="sig-paren">(</span><em class="sig-param">DataSet</em>, <em class="sig-param">OutputPath</em>, <em class="sig-param">NormStd=None</em>, <em class="sig-param">SaveToCsv=True</em>, <em class="sig-param">Verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.PreProcessingData.PreProcessingData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reformating the FullDataset to have just one row by student with the following columns:</p>
+<ul class="simple">
+<li><p>Id Unico (Unique Id)</p></li>
+<li><p>Sexo (Gender)</p></li>
+<li><p>Semestre (Semester)</p></li>
+<li><p>Promedio General</p></li>
+<li><p>Materias Aprobadas Historicas</p></li>
+<li><p>Materias No Aprobadas Historicas</p></li>
+<li><p>Numero de Faltas Semestre En Curso</p></li>
+<li><p>Repite Materia</p></li>
+<li><p>Abandono</p></li>
+</ul>
+<p>And the parameters for this module are:</p>
+<ul class="simple">
+<li><p>DataSet: it could be the path to the csv file or a pandas dataframe.</p></li>
+<li><p>OutputPath: Path where all the csv will be store just if SaveToCsv = True.</p></li>
+<li><dl class="simple">
+<dt>NormStd: This parameter could have three different values, and according to the values, it will return the output dataframe as follows:</dt><dd><ul>
+<li><p>None: it will not modify the output dataframe.</p></li>
+<li><p>Norm: it will normalize the output dataframe.</p></li>
+<li><p>Std: it will standarized the output dataframe.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>SaveToCsv: If True, it will save the output dataframe in the path specified by OutputPath</p></li>
+<li><p>Verbose: If True, it will print information about what is doing the script.</p></li>
+</ul>
+</dd></dl>
+
+<span class="target" id="module-Model.TrainingModel"></span></div>
+</div>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="../Utils/index.html">1. Functions used to Transformed/Clean the Raw Data</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../release_notes.html">Release Notes</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Marcos Bolanos.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.
+    </div>
+  </body>
+</html>

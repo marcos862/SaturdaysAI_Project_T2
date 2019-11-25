@@ -1,0 +1,22 @@
+
+.. _Utils:
+
+############################################################
+Functions used to Transformed/Clean the Raw Data
+############################################################
+
+.. _howtouse_Utils:
+
+
+How To Use the Utils
+==========================================
+** Under Construction **
+
+.. _modules_Utils:
+
+Modules inside the Utils Package
+==========================================
+
+.. automodule:: Utils.JoiningData
+    :members:
+

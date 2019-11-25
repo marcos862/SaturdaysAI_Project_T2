@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>1. Functions used to Transformed/Clean the Raw Data &#8212; Scholar Dropout Detection 0.5.1 documentation</title>
+    <link rel="stylesheet" href="../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Functions used for the ML Model" href="../Model/index.html" />
+    <link rel="prev" title="Scholar Dropout Detection’s documentation!" href="../index.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="../index.html">
+          <span>Scholar Dropout Detection 0.5.1 documentation</span></a></h1>
+        <h2 class="heading"><span>1. Functions used to Transformed/Clean the Raw Data</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="../index.html">Scholar Dropout Detection’s documentation!</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../Model/index.html">2. Functions used for the ML Model</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <div class="section" id="functions-used-to-transformed-clean-the-raw-data">
+<span id="utils"></span><h1>1. Functions used to Transformed/Clean the Raw Data<a class="headerlink" href="#functions-used-to-transformed-clean-the-raw-data" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="how-to-use-the-utils">
+<span id="howtouse-utils"></span><h2>1.1. How To Use the Utils<a class="headerlink" href="#how-to-use-the-utils" title="Permalink to this headline">¶</a></h2>
+<p>** Under Construction **</p>
+</div>
+<div class="section" id="module-Utils.JoiningData">
+<span id="modules-inside-the-utils-package"></span><span id="modules-utils"></span><h2>1.2. Modules inside the Utils Package<a class="headerlink" href="#module-Utils.JoiningData" title="Permalink to this headline">¶</a></h2>
+<p>Script used to join all the raw data into one FullDataSet.</p>
+<dl class="function">
+<dt id="Utils.JoiningData.JoinAllFiles">
+<code class="sig-prename descclassname">Utils.JoiningData.</code><code class="sig-name descname">JoinAllFiles</code><span class="sig-paren">(</span><em class="sig-param">PathToFiles</em>, <em class="sig-param">OutputFilename</em>, <em class="sig-param">SaveToCsv=True</em>, <em class="sig-param">Verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#Utils.JoiningData.JoinAllFiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function will be navigating through the folderstructure:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>Period/Cycle (Folder)</dt><dd><ul>
+<li><dl class="simple">
+<dt>Partials (Folder)</dt><dd><ul>
+<li><p>Semester/Group (file)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>Reading all the files, adding the columns Cycle, Partial, Semester and Group.</p>
+<p>Removing some columns/rows not used.</p>
+<p>Reformating the data to move all the Subjects that are in columns to rows.</p>
+<p>Joining all the files in just one dataframe.</p>
+<p>The parameters are:</p>
+<ul class="simple">
+<li><p>PathToFiles: Path to the folder that contain all the Periods/Partials/Semester files</p></li>
+<li><p>OutputFileName: If SaveToCsv is True, this path will be used to stored the output dataframe as csv</p></li>
+<li><p>SaveToCsv: If True, it will save the output dataframe to a csv file</p></li>
+<li><p>Verbose: if True, the script will be printing a lot of information regarding what is doing the script</p></li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="../index.html">Scholar Dropout Detection’s documentation!</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../Model/index.html">2. Functions used for the ML Model</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Marcos Bolanos.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.
+    </div>
+  </body>
+</html>

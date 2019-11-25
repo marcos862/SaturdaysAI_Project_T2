@@ -1,0 +1,7 @@
+Release Notes
+===================================
+
+Release 0.5.1
+----------------------------
+
+First Release version. Stills needs to clean a little bit and add more documentation

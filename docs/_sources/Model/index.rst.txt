@@ -1,0 +1,24 @@
+
+.. _Model:
+
+############################################################
+Functions used for the ML Model
+############################################################
+
+.. _howtouse_model:
+
+
+How To Use
+==========================================
+** Under Construction **
+
+.. _modules_Model:
+
+Modules inside the Model package
+==========================================
+
+.. automodule:: Model.PreProcessingData
+    :members:
+
+.. automodule:: Model.TrainingModel
+    :members:
