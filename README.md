@@ -1,6 +1,10 @@
 # Dropout Early Warning Systems for High School Students using Machine Learning
 High school dropout is one of the biggest problems to solve in Mexico and specifically one of the biggest concerns in the field of education in the state of Jalisco. Machine Learning, an area of ​​Artificial Intelligence, is being used by educational institutions around the world to reduce dropout rates, improve curricula, didactic adequacy and update accreditation systems. In Machine Learning the systems have algorithms that review the data and are able to predict future behaviors as well as improve autonomously over time without human intervention.
 The objective of this project is to develop a system that generates intervention alerts regarding the risk that students have to leave school by implementing the Machine Learning techniques learned in the **Saturdays.AI Guadalajara** program.
+
+## Documentation
+For a more technical documentation about how to use the scripts in this repository, go to the [github page](https://marcos862.github.io/SaturdaysAI_Project_T2/) for this project
+
 ## Install
 This project requires Python and the following Python libraries installed:
 - NumPy
