@@ -1,6 +1,11 @@
 
 .. _Utils:
 
+.. figure:: _static/logo.png
+   :align: center
+   :height: 128px
+   :width: 128px
+
 ############################################################
 Functions used to Transformed/Clean the Raw Data
 ############################################################

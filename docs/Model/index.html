@@ -35,8 +35,11 @@
       <div class="content" role="main">
         
         
-  <div class="section" id="functions-used-for-the-ml-model">
-<span id="model"></span><h1>2. Functions used for the ML Model<a class="headerlink" href="#functions-used-for-the-ml-model" title="Permalink to this headline">¶</a></h1>
+  <div class="figure align-center" id="model">
+<a class="reference internal image-reference" href="../_static/logo.png"><img alt="../_static/logo.png" src="../_static/logo.png" style="width: 128px; height: 128px;" /></a>
+</div>
+<div class="section" id="functions-used-for-the-ml-model">
+<h1>2. Functions used for the ML Model<a class="headerlink" href="#functions-used-for-the-ml-model" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="how-to-use">
 <span id="howtouse-model"></span><h2>2.1. How To Use<a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
 <p>** Under Construction **</p>
@@ -76,7 +79,27 @@
 </ul>
 </dd></dl>
 
-<span class="target" id="module-Model.TrainingModel"></span></div>
+<hr class="docutils" />
+<span class="target" id="module-Model.TrainingModel"></span><dl class="function">
+<dt id="Model.TrainingModel.TrainingModel">
+<code class="sig-prename descclassname">Model.TrainingModel.</code><code class="sig-name descname">TrainingModel</code><span class="sig-paren">(</span><em class="sig-param">DataSet</em>, <em class="sig-param">OutputPathModel</em>, <em class="sig-param">Verbose=True</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.TrainingModel.TrainingModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function used to train an save a ML model. In this particular case a Random Forest Classifier from sklearn.</p>
+<p>As the dataset that will be used to train the model is imbalance, it was required first to train to balance the dataset
+for that job, it was used the SMOTETomek module from imblearn package. Basically, the SMOTETomek used some techniques
+to do oversampling for the minory class and subsampling for the majority class.</p>
+<p>Also, it was used the tran_test_split module from sklearn.model_selection to split the original dataset into two different
+datasets, one for training and another one for test.</p>
+<p>Finally, it was used confusion_matrix and classification_report modules from sklearn.metrics to evaluate and print the
+performance of the Random Forest Classifier.</p>
+<p>The parameters used are:</p>
+<ul class="simple">
+<li><p>DataSet: This is the input dataset, it could be a path to a csv file or a pandas dataframe</p></li>
+<li><p>OutputPathModel: Path and filename where the trained model will be saved. It’s use pickle for this job.</p></li>
+<li><p>Verbose: If true, the script will be printing information about what is doing the script.</p></li>
+</ul>
+</dd></dl>
+
+</div>
 </div>
 
 

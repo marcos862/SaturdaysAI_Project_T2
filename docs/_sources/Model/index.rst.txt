@@ -1,6 +1,11 @@
 
 .. _Model:
 
+.. figure:: _static/logo.png
+   :align: center
+   :height: 128px
+   :width: 128px
+
 ############################################################
 Functions used for the ML Model
 ############################################################
@@ -19,6 +24,8 @@ Modules inside the Model package
 
 .. automodule:: Model.PreProcessingData
     :members:
+
+==========================================
 
 .. automodule:: Model.TrainingModel
     :members:
