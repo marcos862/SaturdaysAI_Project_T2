@@ -95,7 +95,7 @@ setup(
         'seaborn==0.9.0',
         'matplotlib==3.1.1',
         'scikit-learn==0.21.2',
-        'numpy==1.16.4',
+        'numpy==1.22.0',
         'imbalanced-learn==0.5.0',
     ],
     extras_require={
